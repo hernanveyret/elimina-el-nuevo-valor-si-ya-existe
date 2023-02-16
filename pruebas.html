@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de datos segun marca</title>
+<style>
+  
+    select {
+        padding: 10px;
+    }
+</style>
+               
+</header>
+<body>
+
+    <!-- Crea una base de datos y el codigo identifica las marcas para agregarlas a un select,
+            si esta repetida, NO la ingresa al listado-->
+        <p id="selector"></p>
+        <br />
+        <p id="tuEleccion">Tu eleccion aqui...</p>
+       
+           
+        <script>
+            const repetidos = []
+
+            const articulos = [
+                {
+                    articulo: 320,
+                    marca: 'Jaguar',
+                    genero: 'niños'
+                },
+                {
+                    articulo: 128,
+                    marca: 'Jaguar',
+                    genero: 'niños'
+                },
+                {
+                    articulo: 650,
+                    marca: 'Airness',
+                    genero: 'niños'
+                },
+                {
+                    articulo: 320,
+                    marca: 'Jaguar',
+                    genero: 'dama'
+                },
+                {
+                    articulo: 1234,
+                    marca: 'Savage',
+                    genero: 'dama'
+                },
+                {
+                    articulo: 5678,
+                    marca: 'Savage',
+                    genero: 'dama'
+                },
+                {
+                    articulo: 9098,
+                    marca: 'Tridy',
+                    genero: 'Niños'
+                },
+                {
+                    articulo: 'Bilgax 01',
+                    marca: 'Ringo',
+                    genero: 'Hombre'
+                },
+                {
+                    articulo: 9098,
+                    marca: 'Jaguar',
+                    genero: 'Niños'
+                },
+                {
+                    articulo: 9098,
+                    marca: 'Ipanema',
+                    genero: 'Dama'
+                },
+                {
+                    articulo: 909854,
+                    marca: 'Ipanema',
+                    genero: 'Niños'
+                },
+            ]
+        
+        
+    for ( let i = 0; i < articulos.length; i++ ){               // hace el length de la base de datos para recorrerla.
+        repetidos.push(articulos[i].marca);                     // Ingresa al array las marcas.     
+        for ( let e = 0; e < repetidos.length; e++ ) {          // hace el length de la lista de marcas para recorrerla.
+            if ( repetidos[e - 1]  == articulos[i].marca) {     // Identifica si el valor ingresado anterior es igual al nuevo valor.                                  
+                repetidos.pop()                                 // si es truee lo elimina porque ya existe el mismo valor
+            }                    
+        }                
+    }
+            console.log(repetidos)
+
+            let html = ' ';
+                html += `<select id="marca" onchange="selectXmaerca()">`;
+                        html += `<option>Marcas</option>`;
+                    for ( let i = 0; i < repetidos.length; i++ ) {
+                        html += `<option value="${repetidos[i]}">${repetidos[i]}</option>`;
+                    }
+                html += `</select>`;
+                    selector.innerHTML = html;
+
+           
+
+function selectXmaerca() {
+    let tuSeleccion = document.getElementById('marca').value;
+        tuEleccion.innerHTML = tuSeleccion;
+}
+            
+        </script>
+</body>
+</html>
